@@ -1,0 +1,33 @@
+section {
+    margin: 10px;
+    padding: 10px;
+    border: 1px lightgrey solid;
+    border-radius: 5px;
+}
+
+
+.navigation-groups {
+    display: flex;
+}
+
+.navigation-group {
+    flex-grow: 1;
+    margin: 10px;
+    padding: 10px;
+    border: 1px lightgrey solid;
+    border-radius: 5px;
+}
+
+.navigation-group header {
+    list-style: none
+}
+
+.navigation-group ul li {
+    list-style: none
+}
+
+.navigation-links {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}

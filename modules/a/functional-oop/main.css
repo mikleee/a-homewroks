@@ -1,0 +1,11 @@
+label {
+    width: 200px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 200px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
