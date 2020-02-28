@@ -29,12 +29,26 @@ function Form(container, data, okCallback, cancelCallback) {
     for (let key of Object.keys(this.data)) {
         let validationMessage = new ValidationMessage();
 
-        let input = new Input(key, this.data[key]);
+        let mandatory;
+        let nameForHtml;
+        if (key.startsWith('*')) {
+            mandatory = true;
+            nameForHtml = key.substring(1);
+        } else {
+            mandatory = false;
+            nameForHtml = key;
+        }
+
+        let input = new Input(nameForHtml, this.data[key]);
         inputs[key] = input;
 
         let label = document.createElement('label');
-        label.setAttribute('for', key);
-        label.innerText = key;
+        label.setAttribute('for', input.element.id);
+        if (mandatory) {
+            label.innerHTML = `<span style="color: red">*</span> <span>${nameForHtml}</span>`;
+        } else {
+            label.innerHTML = `<span>${nameForHtml}</span>`;
+        }
 
         /**
          *  добавляем инпут со всеми сопутсвующими его элементами в вёрстку
@@ -55,15 +69,30 @@ function Form(container, data, okCallback, cancelCallback) {
             this.data[key] = value;
 
             /**
-             *  1. пробуем найти функцию валидатор, она должна вернуть true либо текст в ошибкой
-             *  2. если она есть, то запускаем еёб если нет, то считаем, что инпут не надо валидировать
+             * валидируем поле
              */
-            let validator = this.validators[key];
-            let message = '';
-            if (typeof validator === 'function') {
-                let result = validator(this.data[key], key, this.data, input.element);
-                if (result !== true) {
-                    message = result;
+            let errorMessage = '';
+
+            /**
+             * проверяем обязательное ли поле
+             */
+            if (mandatory) {
+                if (value == null || value === '') {
+                    errorMessage = 'This field is mandatory'
+                }
+            }
+
+            if (errorMessage === '') {
+                /**
+                 *  1. пробуем найти функцию валидатор, она должна вернуть true либо текст в ошибкой
+                 *  2. если она есть, то запускаем еёб если нет, то считаем, что инпут не надо валидировать
+                 */
+                let validator = this.validators[key];
+                if (typeof validator === 'function') {
+                    let result = validator(this.data[key], key, this.data, input.element);
+                    if (result !== true) {
+                        errorMessage = result;
+                    }
                 }
             }
 
@@ -78,16 +107,21 @@ function Form(container, data, okCallback, cancelCallback) {
              *      2. убираем с инпута цвет
              *      3. скрываем валидационное сообщение
              */
-            if (message === '') {
+            if (errorMessage === '') {
                 input.valid = true;
                 input.element.style.color = null;
-                validationMessage.hideValidationMessage(null);
+                validationMessage.hideValidationMessage();
             } else {
                 input.valid = false;
                 input.element.style.color = '#ff0000';
-                validationMessage.showValidationMessage(message);
+                validationMessage.showValidationMessage(errorMessage);
             }
         };
+
+        /**
+         * валидируем начальное значение
+         */
+        input.oninput(null, this.data[key]);
     }
 
 
@@ -102,7 +136,7 @@ function Form(container, data, okCallback, cancelCallback) {
      *  добавляем кнопку OK в вёрстку
      */
     let okButton = document.createElement('button');
-    okButton.innerHTML = 'OK'
+    okButton.innerHTML = 'OK';
     okButton.onclick = (event) => {
         if (typeof this.okCallback === 'function') {
             /**
@@ -147,7 +181,7 @@ function Form(container, data, okCallback, cancelCallback) {
 }
 
 
-function Input(key, value) {
+function Input(name, value) {
     this.element = document.createElement('input');
     this.oninput = null;
     /**
@@ -162,8 +196,8 @@ function Input(key, value) {
     this.getInputValue = null;
 
     this.element.type = defineInputType(value);
-    this.element.id = key;
-    this.element.name = key;
+    this.element.id = name;
+    this.element.name = name;
     switch (this.element.type) {
         case 'checkbox':
             this.setInputValue = (value) => this.element.checked = value;
@@ -176,8 +210,7 @@ function Input(key, value) {
         default:
             this.setInputValue = (value) => this.element.value = value;
             this.getInputValue = () => this.element.value;
-            this.element.placeholder = key;
-            this.element.value = value;
+            this.element.placeholder = name;
     }
     // устанасвливаем начальное занчение
     this.setInputValue(value);

@@ -18,6 +18,7 @@ window.addEventListener('load', (event) => {
         name: 'Anakin',
         surname: 'Skywalker',
         married: true,
+        '*city': 'Malinovka',
         birthday: new Date((new Date).getTime() - 86400000 * 30 * 365)
     };
 
@@ -30,9 +31,17 @@ window.addEventListener('load', (event) => {
     );
 
 
-    form.validators.surname = (value, key, data, input) => value.length > 2 &&
-    value[0].toUpperCase() == value[0] &&
-    !value.includes(' ') ? true : 'Wrong name';
+    form.validators.surname = (value, key, data, input) => {
+        if (value.length <= 2) {
+            return 'surname is too short';
+        } else if (value[0].toUpperCase() !== value[0]) {
+            return 'surname should starts with a capital letter';
+        } else if (value.includes(' ')) {
+            return 'surname should not contain white space';
+        } else {
+            return true;
+        }
+    };
 
     console.log(form)
 });
