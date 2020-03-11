@@ -1,0 +1,52 @@
+.traffic-lights {
+    display: flex;
+    justify-content: space-around;
+}
+
+.traffic-light {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 5px;
+    border: 2px solid lightgrey;
+    margin: auto;
+    align-items: center;
+}
+
+.traffic-light .light {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid lightgrey;
+    margin: 10px;
+    transition: background-color 300ms ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.light.red {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.light.yellow {
+    background-color: rgba(255, 240, 0, 0.3);
+}
+
+.light.green {
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+.light.red.active {
+    background-color: rgba(255, 0, 0);
+}
+
+.light.yellow.active {
+    background-color: rgba(255, 240, 0);
+}
+
+.light.green.active {
+    background-color: rgba(0, 255, 0);
+}
+

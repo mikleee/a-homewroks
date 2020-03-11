@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="hw8">
+<head>
+    <meta charset="UTF-8">
+    <title>hw12</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../shared/main.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="traffic-light.js"></script>
+</head>
+<body>
+
+<div class="navigation-links">
+    <a href="../../../index.html">Back</a>
+</div>
+
+
+<div class="traffic-lights">
+    <div id="trafficLight" class="traffic-light">
+        <div traffic-light="red" class="light red"></div>
+        <div traffic-light="yellow" class="light yellow"></div>
+        <div traffic-light="green" class="light green"></div>
+    </div>
+    <div id="pedestrianTrafficLight" class="traffic-light">
+        <div traffic-light="red" class="light red"></div>
+        <div traffic-light="green" class="light green"></div>
+        <div>
+            <button>Stop</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    trafficLight(
+        document.getElementById('trafficLight'),
+        10000,
+        1000,
+        10000,
+    );
+
+    pedestrianTrafficLight(
+        document.getElementById('pedestrianTrafficLight'),
+        8000,
+        8000,
+    );
+</script>
+
+
+</body>
+</html>
