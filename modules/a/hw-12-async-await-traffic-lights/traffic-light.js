@@ -49,11 +49,7 @@ function turnOnLight(trafficLightElement, ms, lightName, cancelButton) {
 }
 
 function delay(ms) {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            resolve(ms);
-        }, ms);
-    });
+    return new Promise((resolve, reject) => setTimeout(() => resolve(ms), ms));
 }
 
 function fireLight(light, promise) {
