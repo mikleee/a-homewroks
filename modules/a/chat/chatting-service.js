@@ -4,7 +4,6 @@ function ChattingService() {
     let messages = [];
     let sequence = 0;
 
-
     this.getMessages = getMessages;
     this.sendMessage = sendMessage;
 
