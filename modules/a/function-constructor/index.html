@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="hw8">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../shared/main.css">
+</head>
+<body>
+
+
+<script>
+
+    (function () {
+
+        let vasya = {
+            name: 'vasya',
+            surname: 'petrov',
+            sayHi: function () {
+                alert(`My name is ${this.name} ${this.surname}`)
+            }
+        };
+        vasya.sayHi();
+
+        let anna = {
+            name: 'anna',
+            surname: 'petrova',
+            sayHi: function () {
+                alert(`My name is ${this.name} ${this.surname}`)
+            }
+        };
+        anna.sayHi();
+
+
+        let igor = {
+            name: 'igor',
+            surname: 'petrova',
+            sayHi: function () {
+                alert(`My name is ${this.name} ${this.surname}`)
+            }
+        };
+        igor.sayHi();
+
+    })();
+
+
+    (function () {
+
+        function createPerson(name, surname) {
+            return {
+                name: name,
+                surname: surname,
+                sayHi: function () {
+                    alert(`My name is ${this.name} ${this.surname}`)
+                }
+            };
+        }
+
+
+        let vasya = createPerson('vasya', 'petrov');
+        debugger;
+        vasya.sayHi();
+
+        let anna = createPerson('anna', 'petrova');
+        anna.sayHi();
+
+        let igor = createPerson('igor', 'petrov');
+        igor.sayHi();
+
+    })();
+
+
+    (function () {
+
+        function Person(name, surname) {
+            let me = this;
+
+            this.name = name;
+            this.surname = surname;
+
+            this.sayHi = function () {
+                alert(`My name is ${me.name} ${me.surname}`)
+            };
+        }
+
+
+        let vasya = new Person('vasya', 'petrov');
+        vasya.sayHi();
+
+        let anna = new Person('anna', 'petrova');
+        anna.sayHi();
+
+        let igor = new Person('igor', 'petrov');
+        igor.sayHi();
+
+    })();
+
+
+</script>
+
+
+</body>
+</html>
