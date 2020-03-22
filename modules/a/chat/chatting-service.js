@@ -11,12 +11,12 @@ function ChattingService() {
     }
 
     function sendMessage(content, userName) {
-        if (userName == undefined) {
+        if (userName == undefined || userName == '') {
             userName = 'Anonimchik'
         }
         let message = new Message(counterID++, new Date(), content, userName);
         messages.push(message);
-        return messages;
+        return message;
     }
 
     function Message(id, createdDate, content, userName) {
