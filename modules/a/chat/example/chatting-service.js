@@ -1,32 +1,40 @@
 function ChattingService() {
     let me = this;
+
     let messages = [];
-    let counterID = 0;
+    let sequence = 0;
+
     this.getMessages = getMessages;
     this.sendMessage = sendMessage;
 
 
     function getMessages() {
-        return messages
+        return messages;
     }
 
     function sendMessage(content, userName) {
         if (userName == undefined) {
-            userName = 'Anonimchik'
+            userName = 'Anonymous';
         }
-        let message = new Message(counterID++, new Date(), content, userName);
+
+        let message = new Message(
+            sequence++,
+            new Date(),
+            userName,
+            content
+        );
         messages.push(message);
-        return messages;
+
+        return message;
     }
+
 
     function Message(id, createdDate, content, userName) {
         this.id = id;
         this.createdDate = createdDate;
         this.content = content;
-        this.userName = userName
+        this.userName = userName;
     }
 
 
 }
-
-let chat = new ChattingService();
