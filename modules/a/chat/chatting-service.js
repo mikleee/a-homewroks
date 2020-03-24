@@ -28,3 +28,4 @@ function ChattingService() {
 
 
 }
+let chattingService= new ChattingService()
