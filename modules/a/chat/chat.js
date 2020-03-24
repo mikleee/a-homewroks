@@ -15,6 +15,7 @@ function Chat() {
     }
 
     function renderChat(parentElement) {
+        debugger
         parentElement.innerHTML = `<div>
             <div class="chat-wrapper"></div>
                 <input type="text" chat-attr="userName">
@@ -35,7 +36,6 @@ function Chat() {
     }
 
     function renderMessage(message) {
-        debugger
         let messageElement = document.createElement('div');
         messageElement.innerHTML =
             `<div class="chat-message">
@@ -53,7 +53,7 @@ function Chat() {
 
         let messageRes = chattingService.sendMessage(
             elements.messagesListInput.value,
-            elements.userNameInput
+            elements.userNameInput.value
         );
         return messageRes
     }
