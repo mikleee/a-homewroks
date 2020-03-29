@@ -9,3 +9,16 @@ input[type="date"] {
     border: 1px solid lightgrey;
     border-radius: 4px;
 }
+
+.date {
+    color: green;
+    font-size: 10px;
+}
+.nick{
+    color: purple;
+    font-size: 15px;
+}
+.content{
+    color: orange;
+    font-size: 13px;
+}

@@ -1,4 +1,4 @@
-function ChattingService() {
+function ChattingServiceA() {
     let me = this;
 
     let messages = [];
@@ -19,7 +19,7 @@ function ChattingService() {
 
         let message = new Message(
             sequence++,
-            new Date(),
+            new Date,
             userName,
             content
         );
