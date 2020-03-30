@@ -1,66 +1,58 @@
 function Chat() {
-    let me = this;
-    let elements = {
-        userNameInput: null,
-        userFormInput: null,
-        sendBtn: null,
-        messagesListInput: null
-    };
+    let chattingService = new ChattingService();
     this.startChat = startChat;
+    let element = {
+        nicknameForm: null,
+        messageForm: null,
+        sendMessage: null,
+        messagesList: null
+    };
 
 
     function startChat(parentElement) {
         renderChat(parentElement)
+
     }
 
     function renderChat(parentElement) {
-        debugger
         parentElement.innerHTML =
-            `<div>
-                <div class="chat-wrapper">
-                    <input type="text" chat-attr="userName">
-                    <input type="text" chat-attr="userForm">
-                    <button chat-attr="btn">Send</button>
+            `<div id="wrapper-chat">
+                 <div chat-item="form-container">
+                     <input type="text" placeholder="message" chat-item="message-form">
+                     <input type="text" placeholder="name" chat-item="nickname-form">
+                     <button chat-item="send-message">Send</button>
                 </div>
-                <div chat-attr="messagesList"></div>
+                  <div chat-item="messages-list"></div>
             </div>`;
 
-        elements.userNameInput = parentElement.querySelector('[chat-attr="userName"]');
-        elements.userFormInput = parentElement.querySelector('[chat-attr="userForm"]');
-        elements.sendBtn = parentElement.querySelector('[chat-attr="btn"]');
-        elements.messagesListInput = parentElement.querySelector('[chat-attr="messagesList"]');
 
-        elements.sendBtn.onclick = function () {
+        element.nicknameForm = parentElement.querySelector('[chat-item="nickname-form"]');
+        element.messageForm = parentElement.querySelector('[chat-item="message-form"]');
+        element.sendMessage = parentElement.querySelector('[chat-item="send-message"]');
+        element.messagesList = parentElement.querySelector('[chat-item="messages-list"]');
+
+        element.sendMessage.onclick = function () {
             let message = sendMessage();
-            renderMessage(message);
-        };
-    }
+            renderMessage(message)
 
-    function renderMessage(message) {
-        let messageElement = document.createElement('div');
-        messageElement.innerHTML =
-            `<div class="chat-message">
-                <div>
-                    <div>${message.createdDate}</div>
-                    <div>${message.userName}</div>
-                </div>
-                <div>${message.content}</div>
-             </div>`;
-        elements.messagesListInput.appendChild(messageElement)
+        }
+
+
     }
 
     function sendMessage() {
-        debugger;
+        let message = chattingService.sendMessage(element.nicknameForm.value, element.messageForm.value);
+        return message;
 
-        let messageContent = elements.userFormInput.value;
-        let userName = elements.userNameInput.value;
-
-        let messageRes = chattingService.sendMessage(
-            messageContent,
-            userName
-        );
-        return messageRes
     }
 
+    function renderMessage(message) {
+        let messageText = document.createElement('div');
+        messageText.innerHTML =
+            `<div class="date">${message.id} ${message.createdDate} </div>
+             <div class="user-message">${message.content}</div>
+             <div class="nick">${message.userName}</div>`;
+        element.messagesList.appendChild(messageText)
 
+    }
 }

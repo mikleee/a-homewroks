@@ -1,4 +1,4 @@
-function ChattingServiceA() {
+function ChattingService() {
     let me = this;
 
     let messages = [];
