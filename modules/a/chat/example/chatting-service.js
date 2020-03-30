@@ -13,6 +13,7 @@ function ChattingService() {
     }
 
     function sendMessage(content, userName) {
+        debugger;
         if (userName == undefined || userName == '') {
             userName = 'Anonymous';
         }
@@ -20,8 +21,8 @@ function ChattingService() {
         let message = new Message(
             sequence++,
             new Date,
-            userName,
-            content
+            content,
+            userName
         );
         messages.push(message);
 

@@ -51,12 +51,20 @@ function Chat() {
         messageText.innerHTML =
             `<div class="chat-message">
                 <div class="chat-message-header">
-                    <div class="chat-message-date">${message.id} ${message.createdDate}</div>
+                    <div class="chat-message-date">
+                        <span>${message.id}</span>
+                        <span>${formatDate(message.createdDate)}</span>
+                    </div>
                     <div class="chat-message-user">${message.userName}</div>
                 </div>
                 <div class="chat-message-content">${message.content}</div>
             </div>`;
         element.messagesList.appendChild(messageText)
+    }
+
+    // todo
+    function formatDate(date) {
+        return 'lalala';
     }
 
 }

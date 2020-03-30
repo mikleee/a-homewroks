@@ -1,77 +1,74 @@
 function Chat() {
-    let me = this;
     let chattingService = new ChattingService();
-    let elements = {
-        userNameInput: null,
-        messageContentInput: null,
-        sendButton: null,
-        listMessagesContainer: null
+    let smilesService = new SmilesService();
+    let element = {
+        nicknameForm: null,
+        messageForm: null,
+        sendMessage: null,
+        messagesList: null
     };
+
 
     this.startChat = startChat;
 
 
     function startChat(parentElement) {
-        renderChat(parentElement);
+        renderChat(parentElement)
     }
-
 
     function renderChat(parentElement) {
         parentElement.innerHTML =
-            `<div class="chat">
-                <div chat-role="form">
-                    <input type="text" chat-role="userName"/>
-                    <input type="text" chat-role="messageContent"/>
-                    <button chat-role="send-message">Send</button>
+            `<div class="chat-main">
+                <div chat-item="form-container">
+                    <input type="text" placeholder="message" chat-item="message-form">
+                    <input type="text" placeholder="name" chat-item="nickname-form">
+                    <button chat-item="send-message">Send</button>
                 </div>
-                <div chat-role="list-messages" class="chat-list-messages"></div>
+                <div chat-item="messages-list"></div>
             </div>`;
 
-        elements.userNameInput = parentElement.querySelector('[chat-role="userName"]');
-        elements.messageContentInput = parentElement.querySelector('[chat-role="messageContent"]');
-        elements.sendButton = parentElement.querySelector('[chat-role="send-message"]');
-        elements.listMessagesContainer = parentElement.querySelector('[chat-role="list-messages"]');
 
+        element.nicknameForm = parentElement.querySelector('[chat-item="nickname-form"]');
+        element.messageForm = parentElement.querySelector('[chat-item="message-form"]');
+        element.sendMessage = parentElement.querySelector('[chat-item="send-message"]');
+        element.messagesList = parentElement.querySelector('[chat-item="messages-list"]');
 
-        elements.sendButton.onclick = function () {
+        element.sendMessage.onclick = function () {
             let message = sendMessage();
-            renderMessage(message);
-        };
-    }
+            renderMessage(message)
+        }
 
-    function renderMessage(message) {
-        let formattedDate = formatDate(message.createdDate);
-
-        let messageElement = document.createElement('div');
-        messageElement.innerHTML =
-            `<div class="chat-message">
-                <div>
-                    <div>${formattedDate}</div>
-                    <div>${message.userName}</div>
-                </div>
-                <div>${message.content}</div>
-            </div>`;
-        elements.listMessagesContainer.appendChild(messageElement);
     }
 
     function sendMessage() {
-        let messageResult = chattingService.sendMessage(
-            elements.messageContentInput.value,
-            elements.userNameInput.value
-        );
+        let message = chattingService.sendMessage(element.messageForm.value, element.nicknameForm.value);
+        return message;
+    }
 
-        elements.messageContentInput.value = null;
-        return messageResult;
+    function renderMessage(message) {
+        let messageText = document.createElement('div');
+
+        let formattedDate = formatDate(message.createdDate);
+        let messageContent = smilesService.smilify(message.content);
+
+
+        messageText.innerHTML =
+            `<div class="chat-message">
+                <div class="chat-message-header">
+                    <div class="chat-message-date">
+                        <span>${message.id}</span>
+                        <span>${formattedDate}</span>
+                    </div>
+                    <div class="chat-message-user">${message.userName}</div>
+                </div>
+                <div class="chat-message-content">${messageContent}</div>
+            </div>`;
+        element.messagesList.appendChild(messageText)
     }
 
 
     function formatDate(date) {
-        if (date == null) {
-            return '';
-        } else {
-            return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-        }
+        return date.toLocaleTimeString();
     }
-
 
 }

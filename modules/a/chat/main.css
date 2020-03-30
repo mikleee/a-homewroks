@@ -34,6 +34,7 @@ input[type="date"] {
 
 .chat-message-header {
     display: flex;
+    justify-content: space-between;
     background-color: lightgrey;
 }
 
