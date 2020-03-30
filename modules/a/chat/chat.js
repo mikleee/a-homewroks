@@ -1,6 +1,5 @@
 function Chat() {
     let chattingService = new ChattingService();
-    this.startChat = startChat;
     let element = {
         nicknameForm: null,
         messageForm: null,
@@ -9,20 +8,22 @@ function Chat() {
     };
 
 
+    this.startChat = startChat;
+
+
     function startChat(parentElement) {
         renderChat(parentElement)
-
     }
 
     function renderChat(parentElement) {
         parentElement.innerHTML =
-            `<div id="wrapper-chat">
-                 <div chat-item="form-container">
-                     <input type="text" placeholder="message" chat-item="message-form">
-                     <input type="text" placeholder="name" chat-item="nickname-form">
-                     <button chat-item="send-message">Send</button>
+            `<div class="chat-main">
+                <div chat-item="form-container">
+                    <input type="text" placeholder="message" chat-item="message-form">
+                    <input type="text" placeholder="name" chat-item="nickname-form">
+                    <button chat-item="send-message">Send</button>
                 </div>
-                  <div chat-item="messages-list"></div>
+                <div chat-item="messages-list"></div>
             </div>`;
 
 
@@ -34,25 +35,28 @@ function Chat() {
         element.sendMessage.onclick = function () {
             let message = sendMessage();
             renderMessage(message)
-
         }
-
 
     }
 
     function sendMessage() {
-        let message = chattingService.sendMessage(element.nicknameForm.value, element.messageForm.value);
+        let message = chattingService.sendMessage(element.messageForm.value, element.nicknameForm.value);
         return message;
-
     }
 
     function renderMessage(message) {
         let messageText = document.createElement('div');
-        messageText.innerHTML =
-            `<div class="date">${message.id} ${message.createdDate} </div>
-             <div class="user-message">${message.content}</div>
-             <div class="nick">${message.userName}</div>`;
-        element.messagesList.appendChild(messageText)
 
+
+        messageText.innerHTML =
+            `<div class="chat-message">
+                <div class="chat-message-header">
+                    <div class="chat-message-date">${message.id} ${message.createdDate}</div>
+                    <div class="chat-message-user">${message.userName}</div>
+                </div>
+                <div class="chat-message-content">${message.content}</div>
+            </div>`;
+        element.messagesList.appendChild(messageText)
     }
+
 }
