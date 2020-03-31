@@ -47,7 +47,6 @@ function Chat() {
     function renderMessage(message) {
         let messageText = document.createElement('div');
 
-
         messageText.innerHTML =
             `<div class="chat-message">
                 <div class="chat-message-header">
@@ -62,9 +61,9 @@ function Chat() {
         element.messagesList.appendChild(messageText)
     }
 
-    // todo
+
     function formatDate(date) {
-        return 'lalala';
+        return  date.toLocaleTimeString();
     }
 
 }
