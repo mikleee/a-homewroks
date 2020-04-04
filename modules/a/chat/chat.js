@@ -1,5 +1,7 @@
 function Chat() {
     let chattingService = new ChattingService();
+    let smilesAddService = new SmilesAddService();
+
     let element = {
         nicknameForm: null,
         messageForm: null,
@@ -46,6 +48,8 @@ function Chat() {
 
     function renderMessage(message) {
         let messageText = document.createElement('div');
+        let messageContent = smilesAddService.getSmilesKeys(message.content);
+
 
         messageText.innerHTML =
             `<div class="chat-message">
@@ -56,14 +60,14 @@ function Chat() {
                     </div>
                     <div class="chat-message-user">${message.userName}</div>
                 </div>
-                <div class="chat-message-content">${message.content}</div>
+                <div class="chat-message-content">${messageContent}</div>
             </div>`;
         element.messagesList.appendChild(messageText)
     }
 
 
     function formatDate(date) {
-        return  date.toLocaleTimeString();
+        return date.toLocaleTimeString();
     }
 
 }

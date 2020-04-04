@@ -13,7 +13,6 @@ function ChattingService() {
     }
 
     function sendMessage(content, userName) {
-        debugger;
         if (userName == undefined || userName == '') {
             userName = 'Anonymous';
         }

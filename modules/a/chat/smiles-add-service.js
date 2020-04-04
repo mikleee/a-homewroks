@@ -1,5 +1,5 @@
-function SmilesService() {
-    let smiles = {
+function SmilesAddService() {
+    let smilesObject = {
         "100": "graphics/emojis/100.png",
         "1234": "graphics/emojis/1234.png",
         "bowtie": "graphics/emojis/bowtie.png",
@@ -879,40 +879,36 @@ function SmilesService() {
         "shipit": "graphics/emojis/shipit.png"
     };
 
+    this.getSmilesKeys = getSmilesKeys;
+
     (function () {
-        let smiles2 = {};
-        for (let [key, value] of Object.entries(smiles)) {
-            smiles2[`:${key}:`] = `https://www.webfx.com/tools/emoji-cheat-sheet/${value}`;
+        let keysObj = {};
+        for (let [key, value] of Object.entries(smilesObject)) {
+            keysObj[`:${key}:`] = `https://www.webfx.com/tools/emoji-cheat-sheet/${value}`;
         }
-        smiles = smiles2;
+        smilesObject = keysObj;
     })();
 
 
-    this.smilify = smilify;
-
-
-    function smilify(string) {
+    function getSmilesKeys(string) {
         let result = string;
-        debugger
+        if (result != null && result != '') {
+            for (let [numberImg, imgUrl] of Object.entries(smilesObject)) {
+                let img = `<img src="${imgUrl}">`;
+                result = replaceSymbol(result, numberImg, img)
 
-        if (result != null && result != '')
-        {
-            for (let [smileSymbol, imageUrl] of Object.entries(smiles)) {
-                let image = `<img src="${imageUrl}"/>`;
-                result = replaceAll(result, smileSymbol, image);
             }
         }
-
-        return result;
+        return result
     }
 
-
-    function replaceAll(inputString, substringToReplace, replacer) {
-        let result = inputString;
-        while (result.includes(substringToReplace)) {
-            result = result.replace(substringToReplace, replacer);
+    function replaceSymbol(stringToReplace, toReplace, replacer) {
+        let result = stringToReplace;
+        while (result.includes(toReplace)) {
+            result = result.replace(toReplace, replacer)
         }
-        return result;
+        return result
     }
+
 
 }
