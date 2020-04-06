@@ -1,0 +1,72 @@
+label {
+    width: 200px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 200px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+.chat-main {
+    width: 50%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px lightgrey solid;
+}
+
+.chat-main [chat-item="form-container"] {
+
+}
+
+.chat-main [chat-item="messages-list"] {
+
+}
+
+.chat-main .controls {
+
+}
+
+.chat-main [chat-item="smiles-list"] {
+    padding: 3px;
+    margin: 3px;
+    border-radius: 4px;
+    border: 1px lightgrey solid;
+}
+
+.smile {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+}
+
+.chat-message {
+    margin-bottom: 3px;
+    border-radius: 4px;
+    border: 1px lightgrey solid;
+}
+
+.chat-message-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgrey;
+}
+
+.chat-message-date {
+    color: green;
+    font-size: 10px;
+    padding: 3px;
+}
+
+.chat-message-user {
+    color: purple;
+    padding: 3px;
+}
+
+.chat-message-content {
+    color: orange;
+    padding: 3px;
+}

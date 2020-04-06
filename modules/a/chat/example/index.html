@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="hw8">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../shared/main.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="chatting-service.js"></script>
+    <script src="smiles-service.js"></script>
+    <script src="chat.js"></script>
+</head>
+<body>
+
+
+<div id="chat"></div>
+
+</body>
+
+<script>
+    (function () {
+        let elementForChat = document.getElementById('chat');
+        let chat = new Chat();
+        chat.startChat(elementForChat);
+    })();
+
+
+</script>
+</html>

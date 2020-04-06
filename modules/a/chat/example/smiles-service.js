@@ -889,16 +889,15 @@ function SmilesService() {
 
 
     this.smilify = smilify;
+    this.getSmiles = getSmiles;
 
 
     function smilify(string) {
         let result = string;
-        debugger
 
-        if (result != null && result != '')
-        {
+        if (result != null && result != '') {
             for (let [smileSymbol, imageUrl] of Object.entries(smiles)) {
-                let image = `<img src="${imageUrl}"/>`;
+                let image = `<img src="${imageUrl}" class="smile"/>`;
                 result = replaceAll(result, smileSymbol, image);
             }
         }
@@ -912,6 +911,21 @@ function SmilesService() {
         while (result.includes(substringToReplace)) {
             result = result.replace(substringToReplace, replacer);
         }
+        return result;
+    }
+
+    function getSmiles() {
+        let result = [];
+
+        for (let [key, value] of Object.entries(smiles)) {
+            let smile = {symbol: key, url: value};
+            result.push(smile);
+
+            if (result.length == 100) {
+                break;
+            }
+        }
+
         return result;
     }
 
