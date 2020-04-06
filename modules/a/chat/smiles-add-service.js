@@ -910,5 +910,11 @@ function SmilesAddService() {
         return result
     }
 
+    // todo запомнить что это такое и подебажить
+    // function replaceSymbol(stringToReplace, toReplace, replacer) {
+    //     let regexp = new RegExp(toReplace, 'g');
+    //     return stringToReplace.replace(regexp, replacer);
+    // }
+
 
 }
