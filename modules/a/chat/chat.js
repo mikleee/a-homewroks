@@ -48,7 +48,7 @@ function Chat() {
 
     function renderMessage(message) {
         let messageText = document.createElement('div');
-        let messageContent = smilesAddService.getSmilesKeys(message.content);
+        let messageContent = smilesAddService.smilify(message.content);
 
 
         messageText.innerHTML =

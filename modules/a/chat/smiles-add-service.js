@@ -879,7 +879,7 @@ function SmilesAddService() {
         "shipit": "graphics/emojis/shipit.png"
     };
 
-    this.getSmilesKeys = getSmilesKeys;
+    this.smilify = smilify;
 
     (function () {
         let keysObj = {};
@@ -890,7 +890,7 @@ function SmilesAddService() {
     })();
 
 
-    function getSmilesKeys(string) {
+    function smilify(string) {
         let result = string;
         if (result != null && result != '') {
             for (let [numberImg, imgUrl] of Object.entries(smilesObject)) {
