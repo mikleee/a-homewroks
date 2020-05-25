@@ -13,13 +13,41 @@ let persons = [
 ];
 
 debugger;
-let table = `<table style="border: 2px blueviolet solid">`;
-table += `<thead><tr>`;
-for (let persona of persons) {
-    for (let key in persona)
-        table += `<td>${key}</td>`;
-}
-table += `</tr></thead>`;
+let table = document.createElement('table');
 
-table += `<tbody><tr>`;
+let thead = document.createElement('thead');
+thead.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+        </tr>`;
+table.appendChild(thead);
 
+let tbody = document.createElement('tbody');
+let tbodyInnerHtml = `
+        <tr>
+            <td>Vasya</td>
+            <td>Petrov</td>
+        </tr>
+        <tr>
+            <td>Vasya</td>
+            <td>Petrov</td>
+        </tr>`;
+// todo корректно сформировать контент tbody
+tbody.innerHTML = tbodyInnerHtml;
+table.appendChild(tbody);
+
+let body = document.body;
+body.appendChild(table);
+
+
+// let table = `<table style="border: 2px blueviolet solid">`;
+// table += `<thead><tr>`;
+// for (let persona of persons) {
+//     for (let key in persona)
+//         table += `<td>${key}</td>`;
+// }
+// table += `</tr></thead>`;
+//
+// table += `<tbody><tr>`;
+//
