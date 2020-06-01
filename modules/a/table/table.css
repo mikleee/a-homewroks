@@ -15,5 +15,5 @@ td, th {
     padding: 3px 8px;
     min-width: 100px;
     text-align: left;
-    border: 0 solid lightgrey;
+    border: 1px solid #6d26ef;
 }
