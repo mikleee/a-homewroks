@@ -1,0 +1,16 @@
+.wrapper{
+    width: 70%;
+    border-collapse: collapse;
+}
+thead{
+    text-align: left;
+}
+tr{
+    border-bottom: aquamarine 2px solid;
+}
+button{
+    background-color: #6d26ef;
+    color: white;
+    padding: 7px;
+    border: none;
+}
