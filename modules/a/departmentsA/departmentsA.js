@@ -1,6 +1,7 @@
 let departmentsArr = [
-    {id: 1, created: 'Tue Jun 02 2020 22:37:59 GMT+0300 (Восточная Европа, летнее время)', name: "HR", description: 'manages human resources'},
-    {id: 2, created: 'Tue Jun 02 2020 22:37:59 GMT+0300 (Восточная Европа, летнее время)', name: 'Security', description: 'responsible for safety'}
+    {id: 1, created: new Date(56789), name: "HR", description: 'manages human resources', floor: 5},
+    {id: 2, created: new Date(566689), name: 'Security', description: 'responsible for safety'},
+    {id: 3, created: new Date(56788489), name: 'Security'}
 ];
 
 let table = document.createElement('table');
@@ -21,33 +22,42 @@ let tbody = document.createElement('tbody');
 
 for (let department of departmentsArr) {
     let tr = document.createElement('tr');
-    let tdBut = document.createElement('td')
+    let tdBut = document.createElement('td');
     debugger;
-    for (let key in department) {
+
+    for (let key of ['id', 'created', 'name', 'description']) {
         let td = document.createElement('td');
 
-        if (key.includes('created')) {
-            td.innerText = renameDate(department[key]);
-            tr.appendChild(td);
+        let value = department[key];
+        let resultText;
+        debugger;
+        if (value == undefined) {
+            resultText = '';
+        } else if (typeof value === 'object') {
+            if (value instanceof Date) {
+                resultText = renameDate(value);
+            } else {
+                resultText = value;
+            }
         } else {
-            td.innerText = department[key];
-            tr.appendChild(td);
+            resultText = value;
         }
-
+        td.innerText = resultText;
+        tr.appendChild(td);
     }
-    let deleteButton = document.createElement('button')
+    let deleteButton = document.createElement('button');
     deleteButton.innerText = 'Delete';
     tdBut.appendChild(deleteButton);
     tr.appendChild(tdBut);
     tbody.appendChild(tr);
 }
 
-table.appendChild(tbody)
+table.appendChild(tbody);
 let body = document.body;
 body.appendChild(table);
 
 
 function renameDate(data) {
-    return data.toLocaleString()
+    return data.toLocaleTimeString();
 }
 
