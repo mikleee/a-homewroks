@@ -22,16 +22,16 @@ let tbody = document.createElement('tbody');
 
 for (let department of departmentsArr) {
     let tr = document.createElement('tr');
-    let tdBut = document.createElement('td');
-    debugger;
+    tr.classList.add('delete');
+
 
     for (let key of ['id', 'created', 'name', 'description']) {
         let td = document.createElement('td');
 
         let value = department[key];
         let resultText;
-        debugger;
-        if (value == undefined) {
+
+        if (value === undefined) {
             resultText = '';
         } else if (typeof value === 'object') {
             if (value instanceof Date) {
@@ -45,10 +45,18 @@ for (let department of departmentsArr) {
         td.innerText = resultText;
         tr.appendChild(td);
     }
-    let deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    tdBut.appendChild(deleteButton);
-    tr.appendChild(tdBut);
+debugger;
+    {   //создаем ячейку с кнопками
+        let tdBut = document.createElement('td');
+        let deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        tdBut.appendChild(deleteButton);
+        tr.appendChild(tdBut);
+        deleteButton.addEventListener('click', function () {
+            let trDelete=document.getElementsByClassName('delete');
+            trDelete[0].parentNode.removeChild(trDelete[0]);
+        });
+    }
     tbody.appendChild(tr);
 }
 
