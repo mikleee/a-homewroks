@@ -8,6 +8,9 @@ thead{
 tr{
     border-bottom: aquamarine 2px solid;
 }
+th{
+    width: 30px;
+}
 button{
     background-color: #6d26ef;
     color: white;
