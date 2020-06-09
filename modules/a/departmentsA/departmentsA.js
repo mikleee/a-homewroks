@@ -21,8 +21,9 @@ table.appendChild(thead);
 let tbody = document.createElement('tbody');
 
 for (let department of departmentsArr) {
+    debugger;
     let tr = document.createElement('tr');
-    tr.classList.add('delete');
+    tr.setAttribute('id', department.id);
 
 
     for (let key of ['id', 'created', 'name', 'description']) {
@@ -45,7 +46,7 @@ for (let department of departmentsArr) {
         td.innerText = resultText;
         tr.appendChild(td);
     }
-debugger;
+
     {   //создаем ячейку с кнопками
         let tdBut = document.createElement('td');
         let deleteButton = document.createElement('button');
@@ -53,8 +54,9 @@ debugger;
         tdBut.appendChild(deleteButton);
         tr.appendChild(tdBut);
         deleteButton.addEventListener('click', function () {
-            let trDelete=document.getElementsByClassName('delete');
-            trDelete[0].parentNode.removeChild(trDelete[0]);
+            debugger;
+            let trDelete = document.getElementById(department.id);
+            trDelete.parentNode.removeChild(trDelete);
         });
     }
     tbody.appendChild(tr);
