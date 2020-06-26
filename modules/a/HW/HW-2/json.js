@@ -250,19 +250,63 @@
 // arr[i] = [] //в i-тый элемент массива заносится новый пустой массив
 // arr[5][6] должен быть равен, соответственно, 30, arr[7][2] == 14 и так далее.
 
-var table = [];
-for (var i = 0; i < 9; i++) {
-    var row = [];
-    var number1 = i + 1;
 
-    for (var j = 0; j < 9; j++) {
-        var number2 = j + 1;
-        row[j] = number1 * number2
+window.addEventListener("load", function () {
+
+    let body = document.body;
+    let tableHtml = document.createElement('table');
+    body.appendChild(tableHtml);
+    let tbody = document.createElement('tbody');
+    tableHtml.appendChild(tbody);
+    for (let i = 1; i <= 9; i++) {
+
+        let tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        let number1 = i;
+
+        for (let j = 1; j <= 9; j++) {
+
+            let td = document.createElement('td');
+            tr.appendChild(td);
+            let number2 = j;
+            let innerRow = number1 * number2;
+            td.innerHTML = String(innerRow);
+        }
     }
+});
 
-    table[i] = row;
-}
-console.log(table);
+
+window.addEventListener("load", function () {
+    let arr = [];
+    //todo    сформировать табл умножения
+    arr = [
+        [1, 2, 3, 4],
+        [2, 4, 6, 8],
+        [3, 6, 9, 12]
+    ];
+
+    debugger;
+    let body = document.body;
+    let tableHtml = document.createElement('table');
+    body.appendChild(tableHtml);
+    let tbody = document.createElement('tbody');
+    tableHtml.appendChild(tbody);
+    for (let i = 1; i <= 9; i++) {
+
+        let tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        let number1 = i;
+
+        for (let j = 1; j <= 9; j++) {
+
+            let td = document.createElement('td');
+            tr.appendChild(td);
+            let number2 = j;
+            let innerRow = number1 * number2;
+            td.innerHTML = String(innerRow);
+        }
+    }
+});
 
 
 // Задание на синий пояс: Треугольник
@@ -273,7 +317,6 @@ console.log(table);
 // ..#######..
 //  .#########.
 //  ###########
-
 
 
 // while (line-- > 0)
