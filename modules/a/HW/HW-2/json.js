@@ -251,62 +251,86 @@
 // arr[5][6] должен быть равен, соответственно, 30, arr[7][2] == 14 и так далее.
 
 
-window.addEventListener("load", function () {
-
-    let body = document.body;
-    let tableHtml = document.createElement('table');
-    body.appendChild(tableHtml);
-    let tbody = document.createElement('tbody');
-    tableHtml.appendChild(tbody);
-    for (let i = 1; i <= 9; i++) {
-
-        let tr = document.createElement('tr');
-        tbody.appendChild(tr);
-        let number1 = i;
-
-        for (let j = 1; j <= 9; j++) {
-
-            let td = document.createElement('td');
-            tr.appendChild(td);
-            let number2 = j;
-            let innerRow = number1 * number2;
-            td.innerHTML = String(innerRow);
-        }
-    }
-});
+// window.addEventListener("load", function () {
+//
+//     let body = document.body;
+//     let tableHtml = document.createElement('table');
+//     body.appendChild(tableHtml);
+//     let tbody = document.createElement('tbody');
+//     tableHtml.appendChild(tbody);
+//     for (let i = 1; i <= 9; i++) {
+//
+//         let tr = document.createElement('tr');
+//         tbody.appendChild(tr);
+//         let number1 = i;
+//
+//         for (let j = 1; j <= 9; j++) {
+//
+//             let td = document.createElement('td');
+//             tr.appendChild(td);
+//             let number2 = j;
+//             let innerRow = number1 * number2;
+//             td.innerHTML = String(innerRow);
+//         }
+//     }
+// });
 
 
 window.addEventListener("load", function () {
     let arr = [];
-    //todo    сформировать табл умножения
-    arr = [
-        [1, 2, 3, 4],
-        [2, 4, 6, 8],
-        [3, 6, 9, 12]
-    ];
+    for (let i = 1; i < 10; i++) {
+        let arr1=[];
+        arr.push(arr1);
+        for (let j = 1; j < 10; j++) {
+            arr1.push(j*i);
+        }
+    }
+    console.log(arr)
 
-    debugger;
+    debugger
     let body = document.body;
     let tableHtml = document.createElement('table');
     body.appendChild(tableHtml);
     let tbody = document.createElement('tbody');
     tableHtml.appendChild(tbody);
-    for (let i = 1; i <= 9; i++) {
+    for (let value of arr) {
 
         let tr = document.createElement('tr');
         tbody.appendChild(tr);
-        let number1 = i;
-
-        for (let j = 1; j <= 9; j++) {
+        for (let number of value) {
 
             let td = document.createElement('td');
             tr.appendChild(td);
-            let number2 = j;
-            let innerRow = number1 * number2;
+            let innerRow = number;
             td.innerHTML = String(innerRow);
         }
     }
-});
+})
+
+
+// let body = document.body;
+// let tableHtml = document.createElement('table');
+// body.appendChild(tableHtml);
+// let tbody = document.createElement('tbody');
+// tableHtml.appendChild(tbody);
+// for (let i = 1; i <= 9; i++) {
+//
+//     let tr = document.createElement('tr');
+//     tbody.appendChild(tr);
+//     let number1 = i;
+//
+//     for (let j = 1; j <= 9; j++) {
+//
+//         let td = document.createElement('td');
+//         tr.appendChild(td);
+//         let number2 = j;
+//         let innerRow = number1 * number2;
+//         td.innerHTML = String(innerRow);
+//     }
+// }
+//     }
+// )
+// ;
 
 
 // Задание на синий пояс: Треугольник
