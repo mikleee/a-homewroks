@@ -279,10 +279,10 @@
 window.addEventListener("load", function () {
     let arr = [];
     for (let i = 1; i < 10; i++) {
-        let arr1=[];
+        let arr1 = [];
         arr.push(arr1);
         for (let j = 1; j < 10; j++) {
-            arr1.push(j*i);
+            arr1.push(j * i);
         }
     }
     console.log(arr)
