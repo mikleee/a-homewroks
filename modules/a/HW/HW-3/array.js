@@ -27,7 +27,7 @@ let o = {
 persons.push(o);
 
 let y = {
-    surname: 'Borisov'
+    surname: 'Borisovich'
 };
 persons.push(y);
 
