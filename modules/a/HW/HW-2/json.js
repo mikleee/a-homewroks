@@ -278,6 +278,9 @@
 
 window.addEventListener("load", function () {
     let arr = [];
+
+
+
     for (let i = 1; i < 10; i++) {
         let arr1 = [];
         arr.push(arr1);
@@ -286,8 +289,7 @@ window.addEventListener("load", function () {
         }
     }
     console.log(arr)
-
-    debugger
+debugger
     let body = document.body;
     let tableHtml = document.createElement('table');
     body.appendChild(tableHtml);

@@ -4,45 +4,53 @@ let a = {
 };
 let b = {
     name: 'Fedya',
-    surname: 'Fedorov',
+    surname: 'Fedorov'
 };
 let c = {};
 a.age = 33;
 b.fathername = 'Vasilevich';
 c.sex = 'man';
 let persons = [];
-persons[0] = a;
-persons[1] = b;
-persons[2] = c;
+persons.push(a);
+persons.push(b);
+persons.push(c);
 
-d = {
+let d = {
     name: 'Masha',
-    surname: 'Fedorovna',
+    surname: 'Fedorovna'
 };
-persons[3] = d;
+persons.push(d);
 
+let o = {
+    name: 'gggleb'
+};
+persons.push(o);
+
+let y = {
+    surname: 'Borisov'
+};
+persons.push(y);
 
 for (let value of persons) {
     console.log(value)
 }
 
 
-for (let value of persons) {
-    for (let key in value) {
+for (let person of persons) {
+    for (let key in person) {
         if (key === "name" || key === 'surname') {
-            console.log(value[key])
+            console.log(person[key])
         }
     }
 }
+debugger;
 
-
-for (let value of persons) {
-    for (let key in value) {
-        if (key === "name" || key === 'surname') {
-            value.fullName = ''
-        }
-    }
+for (let person of persons) {
+    if (person.name === undefined || person.surname === undefined) {
+        person.fullName = '';
+    } else person.fullName = person.name + ' ' + person.surname;
 }
+
 
 console.log(persons);
 
@@ -64,19 +72,25 @@ for (let objectData of persons) {
     }
 }
 
+
 for (let key of keys) {
     str += `<th>${key}</th>`
 }
-str += '</tr><tr>';
+str += '</tr>';
 
+debugger;
+for (let person in persons) {
+    if (person % 2 == 0) {
+        str += '<tr style="background-color: #6d26ef">';
+    } else str += '<tr>';
+    for (let key of keys) {
 
-debugger
-for (let objectData of persons) {
-    for (let key in objectData) {
-        let valueObject = objectData[key];
+        let valueObject = persons[person][key];
         if (valueObject == null) {
             valueObject = '';
         }
+
+
         str += `<td>${valueObject}</td>`
     }
     str += '</tr>'
