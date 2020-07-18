@@ -78,18 +78,18 @@ for (let key of keys) {
 }
 str += '</tr>';
 
-debugger;
 for (let person in persons) {
+
     if (person % 2 == 0) {
         str += '<tr style="background-color: #6d26ef">';
     } else str += '<tr>';
+
     for (let key of keys) {
 
         let valueObject = persons[person][key];
         if (valueObject == null) {
             valueObject = '';
         }
-
 
         str += `<td>${valueObject}</td>`
     }
