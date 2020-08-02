@@ -1,0 +1,11 @@
+<div class="catalogue">
+
+  <ul class="categories">
+    <li *ngFor="let category of categories">
+      <a [routerLink]="'category/' + category.id" routerLinkActive="active">{{category.name}}</a>
+    </li>
+    <!--    <app-product-category  [category]="category"></app-product-category>-->
+  </ul>
+
+  <router-outlet></router-outlet>
+</div>

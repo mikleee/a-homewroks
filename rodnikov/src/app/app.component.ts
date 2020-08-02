@@ -1,21 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {ProductsService} from "./service/products.service";
-import {ProductGroup} from "./model/product.group";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'rodnikov';
-  productGroups: ProductGroup[] = [];
-
-  constructor(private productsService: ProductsService) {
-  }
-
-  ngOnInit(): void {
-    this.productGroups = this.productsService.getActiveProducts();
-  }
 
 }

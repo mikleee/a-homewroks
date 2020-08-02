@@ -1,10 +1,8 @@
-<div>
-
-</div>
-
 <ul>
-  <li *ngFor="let group of productGroups">
-    {{ group }}
-  </li>
+  <li><a routerLink="/catalogue" routerLinkActive="active">Каталог</a></li>
+  <li><a routerLink="/payment-and-delivery" routerLinkActive="active">Оплата и доставка</a></li>
+  <li><a routerLink="/contacts" routerLinkActive="active">Контактная информация</a></li>
+  <li><a routerLink="/portfolio" routerLinkActive="active">Портфолио</a></li>
 </ul>
 
+<router-outlet></router-outlet>
